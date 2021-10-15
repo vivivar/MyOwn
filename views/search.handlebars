@@ -1,0 +1,92 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/user/buscarbook">BookSearch</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor03">
+      <ul class="navbar-nav me-auto">
+      	        <li class="nav-item">
+          <a class="nav-link" href="/user/addbook">Agregar Libro</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+
+</nav>
+
+<h1> Buscar Libro </h1>
+
+<style>
+h2 {
+    margin-top: 0;
+    margin-bottom: .5rem;
+    font-family: "Cabin Sketch",cursive;
+    font-weight: 500;
+    line-height: 1.2;
+}  
+
+.card{
+	margin-top: 15px;
+}
+
+</style>
+
+
+
+{{#if error}} <span>{{error}}</span>{{/if}}
+<form method="POST" action="/user/buscarbook">
+	<form class="d-flex">
+	<div>
+	   	<label>
+         <input value="autor" type="radio" class="form-check-input" name="radioOption" id="autorCheck">Autor</label>
+    	<label>
+
+         <input value="genero" type="radio" class="form-check-input" name="radioOption" id="generoCheck">Género</label>
+         <label>
+
+         <input value="ninguno" type="radio" class="form-check-input" name="radioOption" id="ningunoCheck">Ningún Filtro</label>
+      </div>
+
+      <style>
+      .form-check-input {
+      	    margin-right: 20px;
+		    margin-bottom: .5rem;
+		    font-family: "Cabin Sketch",cursive;
+		    font-weight: 500;
+		    line-height: 1.2;
+      	}
+ 		</style>
+
+ 		    <div id="result"></div>
+        <input class="form-control me-sm-2" name="id_search" type="text" placeholder="Buscar">
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit" onclick="displayRadioValue()">Buscar</button>
+
+          <script>
+        function displayRadioValue() {
+            var ele = document.getElementsByName('gender');
+              
+            for(i = 0; i < ele.length; i++) {
+                if(ele[i].checked)
+                document.getElementById("result").innerHTML
+                        = "Opcion: "+ele[i].value;
+            }
+        }
+    </script>
+      </form>
+</form>
+
+{{#each libros}} 
+<form method="GET" action="/user/busqueda/{{this.id}}">
+<div class="card border-secondary mb-3" style="max-width: 20rem;">
+  <div class="card-header">{{this.title}}</div>
+  <div class="card-body">
+    <h4 class="card-title">{{this.author}}</h4>
+    <p class="card-text">{{this.gender}}</p>
+  </div>
+</div>
+</form>
+{{/each}}
+

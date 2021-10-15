@@ -1,0 +1,21 @@
+{
+  "name": "project1",
+  "version": "1.0.0",
+  "description": "Users database for project 1",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app"
+  },
+  "author": "Viviana Vargas Ortiz",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "bootswatch": "^5.1.1",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.3",
+    "handlebars": "^4.7.7",
+    "method-override": "^3.0.0",
+    "ravendb": "^5.0.3",
+    "redis": "^3.1.2"
+  }
+}
